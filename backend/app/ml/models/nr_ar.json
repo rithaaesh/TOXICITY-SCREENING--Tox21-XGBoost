@@ -1,0 +1,65 @@
+{
+  "target": "NR-AR",
+  "slug": "nr_ar",
+  "base_rate": 0.03313304721030043,
+  "features": "ecfp2048+maccs167+rdkit_descriptors",
+  "calibration": {
+    "slope": 1.086464374127206,
+    "intercept": 0.6513869150855106
+  },
+  "metrics": {
+    "roc_auc": 0.911813232139911,
+    "pr_auc": 0.8180345717810039,
+    "f1": 0.7727272727272727,
+    "balanced_accuracy": 0.831607820491668,
+    "f1_threshold": 0.4551657438278198,
+    "brier_raw": 0.04164924845099449,
+    "brier_calibrated": 0.036084000021219254,
+    "ece_raw": 0.03232287359750028,
+    "ece_calibrated": 0.017052837520973432,
+    "reliability_calibrated": [
+      {
+        "mean_predicted": 0.015270731411874294,
+        "observed_rate": 0.006993006993006993,
+        "n": 143
+      },
+      {
+        "mean_predicted": 0.022558141499757767,
+        "observed_rate": 0.027972027972027972,
+        "n": 143
+      },
+      {
+        "mean_predicted": 0.032342784106731415,
+        "observed_rate": 0.027972027972027972,
+        "n": 143
+      },
+      {
+        "mean_predicted": 0.047961559146642685,
+        "observed_rate": 0.04195804195804196,
+        "n": 143
+      },
+      {
+        "mean_predicted": 0.36806827783584595,
+        "observed_rate": 0.4295774647887324,
+        "n": 142
+      }
+    ],
+    "confusion_matrix_at_threshold": [
+      [
+        633,
+        5
+      ],
+      [
+        25,
+        51
+      ]
+    ],
+    "train_samples": 5825,
+    "valid_samples": 719,
+    "test_samples": 714,
+    "positive_train_samples": 193,
+    "positive_test_samples": 76,
+    "best_iteration": 37
+  },
+  "trained_utc": "2026-10-19T10:06:18+00:00"
+}

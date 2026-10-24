@@ -1,0 +1,65 @@
+{
+  "target": "SR-MMP",
+  "slug": "sr_mmp",
+  "base_rate": 0.15152160034049797,
+  "features": "ecfp2048+maccs167+rdkit_descriptors",
+  "calibration": {
+    "slope": 0.9134871923444099,
+    "intercept": 0.12752077228031716
+  },
+  "metrics": {
+    "roc_auc": 0.9151808897351567,
+    "pr_auc": 0.7041131118409903,
+    "f1": 0.6358974358974359,
+    "balanced_accuracy": 0.7614895274363856,
+    "f1_threshold": 0.3484828472137451,
+    "brier_raw": 0.09867098927497864,
+    "brier_calibrated": 0.09551762044429779,
+    "ece_raw": 0.057195623407855195,
+    "ece_calibrated": 0.044518992710322475,
+    "reliability_calibrated": [
+      {
+        "mean_predicted": 0.011328069493174553,
+        "observed_rate": 0.0,
+        "n": 109
+      },
+      {
+        "mean_predicted": 0.028749613091349602,
+        "observed_rate": 0.0,
+        "n": 109
+      },
+      {
+        "mean_predicted": 0.06315571069717407,
+        "observed_rate": 0.07407407407407407,
+        "n": 108
+      },
+      {
+        "mean_predicted": 0.16267015039920807,
+        "observed_rate": 0.25,
+        "n": 108
+      },
+      {
+        "mean_predicted": 0.5726850032806396,
+        "observed_rate": 0.6574074074074074,
+        "n": 108
+      }
+    ],
+    "confusion_matrix_at_threshold": [
+      [
+        409,
+        27
+      ],
+      [
+        44,
+        62
+      ]
+    ],
+    "train_samples": 4699,
+    "valid_samples": 563,
+    "test_samples": 542,
+    "positive_train_samples": 712,
+    "positive_test_samples": 106,
+    "best_iteration": 238
+  },
+  "trained_utc": "2026-10-19T10:07:04+00:00"
+}

@@ -1,0 +1,65 @@
+{
+  "target": "SR-p53",
+  "slug": "sr_p53",
+  "base_rate": 0.05498533724340176,
+  "features": "ecfp2048+maccs167+rdkit_descriptors",
+  "calibration": {
+    "slope": 0.8613729609917379,
+    "intercept": 0.30771837753546294
+  },
+  "metrics": {
+    "roc_auc": 0.8397238420068214,
+    "pr_auc": 0.3778960371570831,
+    "f1": 0.3597122302158273,
+    "balanced_accuracy": 0.6604549455385631,
+    "f1_threshold": 0.21369905769824982,
+    "brier_raw": 0.0722268670797348,
+    "brier_calibrated": 0.07020799815654755,
+    "ece_raw": 0.03456579436246118,
+    "ece_calibrated": 0.010932385723022929,
+    "reliability_calibrated": [
+      {
+        "mean_predicted": 0.013083048164844513,
+        "observed_rate": 0.007575757575757576,
+        "n": 132
+      },
+      {
+        "mean_predicted": 0.03220093622803688,
+        "observed_rate": 0.007575757575757576,
+        "n": 132
+      },
+      {
+        "mean_predicted": 0.05293088033795357,
+        "observed_rate": 0.04580152671755725,
+        "n": 131
+      },
+      {
+        "mean_predicted": 0.0971086397767067,
+        "observed_rate": 0.09923664122137404,
+        "n": 131
+      },
+      {
+        "mean_predicted": 0.2901345193386078,
+        "observed_rate": 0.3053435114503817,
+        "n": 131
+      }
+    ],
+    "confusion_matrix_at_threshold": [
+      [
+        543,
+        53
+      ],
+      [
+        36,
+        25
+      ]
+    ],
+    "train_samples": 5456,
+    "valid_samples": 654,
+    "test_samples": 657,
+    "positive_train_samples": 300,
+    "positive_test_samples": 61,
+    "best_iteration": 146
+  },
+  "trained_utc": "2026-10-19T10:07:09+00:00"
+}

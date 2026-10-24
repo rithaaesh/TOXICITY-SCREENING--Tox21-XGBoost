@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#151a18">
+  <meta name="description" content="An explainable Tox21 research dashboard for molecular toxicity screening.">
+  <title>Tox21 | Molecular Signal Lab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="theme.css">
+  <link rel="stylesheet" href="extras.css">
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="Molecular Signal Lab home">
+      <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+      <span>MOLECULAR<span class="brand-light"> SIGNAL LAB</span></span>
+    </a>
+    <div class="topbar-meta">
+      <span class="dataset-tag">TOX21 / 12 TARGETS</span>
+      <span class="service-status" id="service-status"><i></i><span>Connecting</span></span>
+    </div>
+  </header>
+
+  <main id="top" class="page-shell">
+    <section class="intro-row">
+      <div>
+        <p class="eyebrow">CHEMINFORMATICS RESEARCH WORKSPACE <span>01 / 12 PATHWAYS</span></p>
+        <h1>Read the molecular<br><em>signal.</em></h1>
+      </div>
+      <p class="intro-copy">Explore calibrated model estimates across all twelve Tox21 assays, check whether a molecule resembles the training data, and see which atoms and descriptors shaped each prediction.</p>
+    </section>
+
+    <section class="analysis-layout" aria-label="Toxicity analysis workspace">
+      <aside class="input-panel panel">
+        <div class="section-heading"><span class="section-index">01</span><h2>Input molecule</h2></div>
+        <label for="smiles-input" class="field-label">SMILES STRING</label>
+        <textarea id="smiles-input" rows="4" spellcheck="false" placeholder="Paste a SMILES structure..." aria-describedby="input-hint"></textarea>
+        <div class="input-hint-row"><span id="input-hint">A valid molecular structure is required.</span><span id="char-count">0 / 1000</span></div>
+        <div class="preset-header"><span class="field-label">QUICK TEST</span><span>SELECT A COMPOUND</span></div>
+        <div class="preset-list">
+          <button type="button" class="preset" data-smiles="CC(=O)OC1=CC=CC=C1C(=O)O"><span class="preset-dot coral"></span><span>Aspirin</span><span class="preset-note">REFERENCE</span></button>
+          <button type="button" class="preset" data-smiles="c1ccccc1"><span class="preset-dot blue"></span><span>Benzene</span><span class="preset-note">AROMATIC</span></button>
+          <button type="button" class="preset" data-smiles="Clc1cc2Oc3cc(Cl)c(Cl)cc3Oc2cc1Cl"><span class="preset-dot lime"></span><span>TCDD</span><span class="preset-note">DIOXIN</span></button>
+        </div>
+        <button type="button" class="analyze-button" id="analyze-button"><span>Analyze compound</span><span aria-hidden="true">↗</span></button>
+        <p class="research-note">Research screening only. Not a safety determination.</p>
+      </aside>
+
+      <div class="results-column">
+        <section class="panel structure-panel">
+          <div class="section-heading"><span class="section-index">02</span><h2>Structure preview</h2><span class="panel-state" id="structure-state">AWAITING INPUT</span></div>
+          <div class="structure-content">
+            <div class="molecule-visual" id="structure-visual"><div class="structure-placeholder"><span class="placeholder-ring"></span><span>2D structure appears here</span></div></div>
+            <div class="molecule-facts" id="molecule-facts"><span>CANONICAL SMILES</span><code id="canonical-smiles">—</code><span>MOLECULAR FORMULA</span><strong id="molecular-formula">—</strong><span>APPLICABILITY DOMAIN</span><strong id="domain-status" class="domain-status">—</strong><small id="domain-detail" class="domain-detail">Similarity to the training molecules</small></div>
+          </div>
+        </section>
+
+        <section class="panel assay-panel">
+          <div class="section-heading"><span class="section-index">03</span><h2>Assay activity</h2><span class="panel-state" id="result-state">NO ANALYSIS</span></div>
+          <div class="assay-content">
+            <div class="chart-wrap"><canvas id="assay-chart" aria-label="Predicted activation probability for each assay"></canvas><div class="chart-empty" id="chart-empty">Run an analysis<br>to see probabilities</div></div>
+            <div class="assay-readouts" id="assay-readouts" role="list"></div>
+          </div>
+          <p class="risk-legend"><span>LOW &lt; 20%</span><span>MEDIUM 20–50%</span><span>HIGH ≥ 50%</span><span>CALIBRATED PROBABILITY</span></p>
+        </section>
+
+        <section class="panel pathway-panel">
+          <div class="section-heading"><span class="section-index">04</span><h2>Protein and pathway layer</h2><span class="panel-state" id="pathway-state">NO ANALYSIS YET</span></div>
+          <div class="path-table-wrap"><table class="path-table" id="pathway-table"><caption class="visually-hidden">Pathway-level scores rolled up from the 12 assays</caption></table></div>
+          <p class="path-note" id="pathway-note">Analyze a compound to roll its 12 assay scores up into 7 biological pathways. A pathway score is the highest calibrated probability among its assays. Held-out AUC is measured on scaffolds never seen in training. The assay-to-protein mapping is curated from Tox21 assay descriptions, not learned from data.</p>
+          <details class="protein-map"><summary>Assay-to-protein map: what each of the 12 assays measures</summary><div class="path-table-wrap"><table class="path-table compact" id="protein-table"></table></div></details>
+        </section>
+
+        <section class="panel property-panel">
+          <div class="section-heading"><span class="section-index">05</span><h2>Molecular properties</h2><span class="lipinski-badge" id="lipinski-badge">AWAITING INPUT</span></div>
+          <div class="property-grid">
+            <div class="property-item"><span>MOLECULAR WEIGHT</span><strong id="property-mw">—</strong><small>g/mol</small></div>
+            <div class="property-item"><span>LOGP</span><strong id="property-logp">—</strong><small>octanol / water</small></div>
+            <div class="property-item"><span>H-BOND DONORS</span><strong id="property-hbd">—</strong><small>count</small></div>
+            <div class="property-item"><span>H-BOND ACCEPTORS</span><strong id="property-hba">—</strong><small>count</small></div>
+            <div class="property-item"><span>POLAR SURFACE</span><strong id="property-tpsa">—</strong><small>Å² TPSA</small></div>
+          </div>
+          <p class="property-note" id="lipinski-detail">Lipinski Rule of Five is a heuristic for oral drug-likeness, not a toxicity rule.</p>
+        </section>
+      </div>
+    </section>
+
+    <section class="batch-panel panel">
+      <div class="section-heading"><span class="section-index">06</span><h2>Batch screening</h2><span class="panel-state">CSV / UP TO 5,000 MOLECULES</span></div>
+      <div class="batch-controls">
+        <div class="batch-copy"><strong>Screen a compound list</strong><span>CSV needs a <code>smiles</code> column. Invalid structures are retained with an error field.</span></div>
+        <div class="batch-actions">
+          <label class="file-select" for="batch-file"><span aria-hidden="true">↑</span> Choose CSV</label>
+          <input id="batch-file" type="file" accept=".csv,text/csv" hidden>
+          <span class="file-name" id="batch-file-name">No file selected</span>
+          <button type="button" class="batch-run-button" id="batch-run-button" disabled>Run batch</button>
+          <a class="sample-download" href="sample_compounds.csv" download>Sample CSV ↓</a>
+          <a class="batch-download" id="batch-download" hidden download="tox21_batch_results.csv">Download results ↓</a>
+        </div>
+      </div>
+      <p class="batch-status" id="batch-status" role="status" aria-live="polite">Maximum upload: 5 MB. Results include 12 endpoint scores, risk bands, applicability domain, descriptors, and row-level validation.</p>
+      <div class="batch-summary" id="batch-summary" hidden></div>
+    </section>
+
+    <section class="panel explain-panel">
+      <div class="section-heading"><span class="section-index">07</span><h2>Model contribution map</h2><div class="explain-controls"><label class="visually-hidden" for="explain-target">Assay to explain</label><select id="explain-target" class="target-select"></select><span class="panel-state" id="explain-state">SHAP / TOP FEATURES</span></div></div>
+      <div class="explain-content">
+        <div class="explain-chart-wrap"><canvas id="shap-chart" aria-label="SHAP values for influential molecular fingerprint features"></canvas><div class="chart-empty" id="shap-empty">Feature contributions will appear after analysis.</div></div>
+        <div class="explain-side"><figure class="atom-map"><div class="atom-map-visual" id="atom-map-visual"><span>Atom-level map appears after analysis.</span></div><figcaption id="atom-map-caption">Red atoms push the selected score up, blue atoms push it down.</figcaption></figure><div class="direction-key"><span><i class="positive-key"></i>Raises model score</span><span><i class="negative-key"></i>Lowers model score</span></div><div class="fragment-list" id="fragment-list"><p>Select a molecule to inspect its most influential fingerprint bits.</p></div></div>
+      </div>
+      <p class="explain-footnote">SHAP values explain model behavior, not causal biological mechanisms. Only fingerprint bits can be placed on atoms; descriptor and MACCS contributions are whole-molecule and are listed but not drawn.</p>
+    </section>
+
+    <footer class="page-footer"><span>TOX21 EXPLORATORY SCREENING</span><span>MODEL OUTPUTS ARE HYPOTHESES, NOT BIOLOGICAL CONFIRMATION</span><a href="http://localhost:8000/docs" target="_blank" rel="noreferrer">API DOCS ↗</a></footer>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </main>
+</body>
+</html>

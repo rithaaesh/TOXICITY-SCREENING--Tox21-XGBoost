@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+.pytest_cache/
+# Dataset and benchmark scratch files are regenerated; trained models and benchmark.json are committed.
+data/*
+!data/.gitkeep
+!data/benchmark_runs.jsonl
+.DS_Store

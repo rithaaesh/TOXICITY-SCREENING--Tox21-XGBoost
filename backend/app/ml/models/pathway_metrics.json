@@ -1,0 +1,84 @@
+{
+  "endocrine": {
+    "name": "Endocrine (sex-hormone) signalling",
+    "assays": [
+      "NR-AR",
+      "NR-AR-LBD",
+      "NR-Aromatase",
+      "NR-ER",
+      "NR-ER-LBD"
+    ],
+    "base_rate": 0.1165264720435428,
+    "test_molecules": 455,
+    "test_positives": 69,
+    "roc_auc": 0.748347976270932,
+    "pr_auc": 0.507364212837893
+  },
+  "xenobiotic": {
+    "name": "Xenobiotic sensing (AhR)",
+    "assays": [
+      "NR-AhR"
+    ],
+    "base_rate": 0.11174134997163924,
+    "test_molecules": 619,
+    "test_positives": 81,
+    "roc_auc": 0.8506126944788654,
+    "pr_auc": 0.5654023936550368
+  },
+  "metabolic": {
+    "name": "Lipid and glucose metabolism (PPAR)",
+    "assays": [
+      "NR-PPAR-gamma"
+    ],
+    "base_rate": 0.027724665391969407,
+    "test_molecules": 615,
+    "test_positives": 20,
+    "roc_auc": 0.7987394957983193,
+    "pr_auc": 0.32477095891190766
+  },
+  "oxidative": {
+    "name": "Oxidative stress response (Nrf2/ARE)",
+    "assays": [
+      "SR-ARE"
+    ],
+    "base_rate": 0.15873015873015872,
+    "test_molecules": 510,
+    "test_positives": 82,
+    "roc_auc": 0.8280145885571005,
+    "pr_auc": 0.5288168768725798
+  },
+  "genotoxic": {
+    "name": "DNA damage and genotoxic stress",
+    "assays": [
+      "SR-ATAD5",
+      "SR-p53"
+    ],
+    "base_rate": 0.06230121608980355,
+    "test_molecules": 637,
+    "test_positives": 69,
+    "roc_auc": 0.8321596244131455,
+    "pr_auc": 0.43876466036457423
+  },
+  "proteotoxic": {
+    "name": "Heat-shock / protein-folding stress",
+    "assays": [
+      "SR-HSE"
+    ],
+    "base_rate": 0.05625,
+    "test_molecules": 595,
+    "test_positives": 42,
+    "roc_auc": 0.7714199603892189,
+    "pr_auc": 0.3992878479674228
+  },
+  "mitochondrial": {
+    "name": "Mitochondrial function",
+    "assays": [
+      "SR-MMP"
+    ],
+    "base_rate": 0.15152160034049797,
+    "test_molecules": 542,
+    "test_positives": 106,
+    "roc_auc": 0.9151808897351567,
+    "pr_auc": 0.7041131118409903
+  }
+}

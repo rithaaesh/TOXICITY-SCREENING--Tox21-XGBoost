@@ -1,0 +1,65 @@
+{
+  "target": "SR-ATAD5",
+  "slug": "sr_atad5",
+  "base_rate": 0.034288728679444345,
+  "features": "ecfp2048+maccs167+rdkit_descriptors",
+  "calibration": {
+    "slope": 0.944290745827489,
+    "intercept": 0.11867182323122619
+  },
+  "metrics": {
+    "roc_auc": 0.8189644468358097,
+    "pr_auc": 0.2950334046081684,
+    "f1": 0.3448275862068966,
+    "balanced_accuracy": 0.6267124705103266,
+    "f1_threshold": 0.2006593644618988,
+    "brier_raw": 0.045202188193798065,
+    "brier_calibrated": 0.04473811388015747,
+    "ece_raw": 0.024153069952043936,
+    "ece_calibrated": 0.01832631862303917,
+    "reliability_calibrated": [
+      {
+        "mean_predicted": 0.006951333023607731,
+        "observed_rate": 0.0,
+        "n": 138
+      },
+      {
+        "mean_predicted": 0.01220058836042881,
+        "observed_rate": 0.007246376811594203,
+        "n": 138
+      },
+      {
+        "mean_predicted": 0.01943334750831127,
+        "observed_rate": 0.021739130434782608,
+        "n": 138
+      },
+      {
+        "mean_predicted": 0.033827971667051315,
+        "observed_rate": 0.08695652173913043,
+        "n": 138
+      },
+      {
+        "mean_predicted": 0.1278821974992752,
+        "observed_rate": 0.15217391304347827,
+        "n": 138
+      }
+    ],
+    "confusion_matrix_at_threshold": [
+      [
+        642,
+        11
+      ],
+      [
+        27,
+        10
+      ]
+    ],
+    "train_samples": 5687,
+    "valid_samples": 688,
+    "test_samples": 690,
+    "positive_train_samples": 195,
+    "positive_test_samples": 37,
+    "best_iteration": 90
+  },
+  "trained_utc": "2026-10-19T10:06:51+00:00"
+}

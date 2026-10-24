@@ -1,0 +1,7 @@
+__pycache__
+*.py[cod]
+.venv
+venv
+data
+backend/app/ml/models
+.git

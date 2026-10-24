@@ -1,0 +1,12 @@
+smiles,name
+CC(=O)OC1=CC=CC=C1C(=O)O,Aspirin
+c1ccccc1,Benzene
+Clc1cc2Oc3cc(Cl)c(Cl)cc3Oc2cc1Cl,TCDD
+c1ccc2c(c1)cc1ccc3cccc4ccc2c1c34,Benzo[a]pyrene
+CN1C=NC2=C1C(=O)N(C(=O)N2C)C,Caffeine
+CC(C)(c1ccc(O)cc1)c1ccc(O)cc1,Bisphenol A
+O=C1c2ccccc2C(=O)c2c(O)ccc(O)c12,Quinizarin
+CCO,Ethanol
+CC(=O)Nc1ccc(O)cc1,Paracetamol
+Cc1ccc(N)cc1,p-Toluidine
+not_a_smiles,Invalid example

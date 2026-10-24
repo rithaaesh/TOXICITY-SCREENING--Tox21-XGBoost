@@ -1,0 +1,65 @@
+{
+  "target": "NR-Aromatase",
+  "slug": "nr_aromatase",
+  "base_rate": 0.04826418289585097,
+  "features": "ecfp2048+maccs167+rdkit_descriptors",
+  "calibration": {
+    "slope": 0.9818266517706309,
+    "intercept": 0.14049255990570303
+  },
+  "metrics": {
+    "roc_auc": 0.8499529140943811,
+    "pr_auc": 0.40083941517766347,
+    "f1": 0.40625,
+    "balanced_accuracy": 0.6581301663701998,
+    "f1_threshold": 0.24900411069393158,
+    "brier_raw": 0.05387786030769348,
+    "brier_calibrated": 0.05370430275797844,
+    "ece_raw": 0.013211690553062887,
+    "ece_calibrated": 0.010798986495925238,
+    "reliability_calibrated": [
+      {
+        "mean_predicted": 0.007578179705888033,
+        "observed_rate": 0.0,
+        "n": 109
+      },
+      {
+        "mean_predicted": 0.0183754600584507,
+        "observed_rate": 0.009259259259259259,
+        "n": 108
+      },
+      {
+        "mean_predicted": 0.03520456328988075,
+        "observed_rate": 0.046296296296296294,
+        "n": 108
+      },
+      {
+        "mean_predicted": 0.06930826604366302,
+        "observed_rate": 0.05555555555555555,
+        "n": 108
+      },
+      {
+        "mean_predicted": 0.22825480997562408,
+        "observed_rate": 0.24074074074074073,
+        "n": 108
+      }
+    ],
+    "confusion_matrix_at_threshold": [
+      [
+        490,
+        13
+      ],
+      [
+        25,
+        13
+      ]
+    ],
+    "train_samples": 4724,
+    "valid_samples": 550,
+    "test_samples": 541,
+    "positive_train_samples": 228,
+    "positive_test_samples": 38,
+    "best_iteration": 116
+  },
+  "trained_utc": "2026-10-19T10:06:32+00:00"
+}
